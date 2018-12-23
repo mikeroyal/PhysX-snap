@@ -1,5 +1,5 @@
 name: PhysX
-summary: The NVIDIA PhysX SDK
+summary: The NVIDIA PhysX 4 SDK
 description: 
   
 adopt-info: devmode # use 'strict' once you have the right plugs and slots
@@ -21,7 +21,7 @@ apps:
 parts:
   PhysX:
     plugin: 
-    source: https://github.com/NVIDIAGameWorks/PhysX-3.4.git
+    source: https://github.com/NVIDIAGameWorks/PhysX.git
     source-type: git
     override-pull: |
       snapcraftctl pull
