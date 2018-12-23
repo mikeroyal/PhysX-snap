@@ -4,7 +4,7 @@
   PhysX
 </h1>
 
-<p align="center"><b>This is the snap for PhysX,the NVIDIA PhysX SDK. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
+<p align="center"><b>This is the snap for PhysX, the NVIDIA PhysX SDK. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
 
 <!-- Uncomment and modify this when you are provided a build status badge
 <p align="center">
@@ -39,7 +39,7 @@ upstream so [Project] can authoritatively publish future releases.
   - [x] Rename the forked Snapcrafters template repository
   - [x] Update the description of the repository
   - [x] Update logos and references to `[Project]` and `[my-snap-name]`
-  - [ ] Create a snap that runs in `devmode`
+  - [x] Create a snap that runs in `devmode`
   - [ ] Register the snap in the store, **using the preferred upstream name**
   - [x] Add a screenshot to this `README.md`
   - [ ] Publish the `devmode` snap in the Snap store edge channel
