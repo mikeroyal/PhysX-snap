@@ -1,4 +1,4 @@
-name: PhysX
+name: physx
 summary: The NVIDIA PhysX 4 SDK
 description: 
   
@@ -13,13 +13,13 @@ architectures:
   - build-on: arm64
 
 apps:
-  PhysX:
-    command: PhysX
+  physx:
+    command: physx
     plugs:
       - network
 
 parts:
-  PhysX:
+  physx:
     plugin: 
     source: https://github.com/NVIDIAGameWorks/PhysX.git
     source-type: git
