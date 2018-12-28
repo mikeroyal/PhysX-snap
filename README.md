@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/45159366/50040728-09715b00-fffe-11e8-8bb6-e0f833d23ad6.png">
+  <img src="https://user-images.githubusercontent.com/45159366/50507838-02057500-0a34-11e9-99de-76fe5efb01d6.jpeg">
   <br />
   PhysX
 </h1>
