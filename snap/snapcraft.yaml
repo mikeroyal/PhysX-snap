@@ -24,10 +24,11 @@ parts:
     source: https://github.com/NVIDIAGameWorks/PhysX.git
     source-type: git
     override-pull: |
-      snapcraftctl pull
+      git clone https://github.com/NVIDIAGameWorks/PhysX.git src/github.com/NVIDIAGameWorks/PhysX
+       cd src/github.com/NVIDIAGameWorks/PhysX
       last_committed_tag="$(git describe --tags --abbrev=0)"
       last_committed_tag_ver="$(echo ${last_committed_tag} | sed 's/v//')"
-      last_released_tag="$(snap info wethr | awk '$1 == "beta:" { print $2 }')"
+      last_released_tag="$(snap info $SNAPCRAFT_PROJECT_NAME | awk '$1 == "beta:" { print $2 }')"
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag_ver}" != "${last_released_tag}" ]; then
@@ -35,6 +36,16 @@ parts:
         git checkout "${last_committed_tag}"
       fi
       snapcraftctl set-version "$(git describe --tags | sed 's/v//')"
+      override-build: |
+      export GOPATH=$PWD
+      cd src/github.com/NVIDIAGameWorks/PhysX
+      env CGO_ENABLED=0 GOOS=linux \
+      go build --ldflags "-s -w \
+        -X 'github.com/NVIDIAGameWorks/PhysX/version.GitCommit=$(git rev-list -1 HEAD)' \
+        -X 'github.com/NVIDIAGameWorks/PhysX/version.Version=$(git describe --tags --abbrev=0)'" \
+        -a -installsuffix cgo -o $SNAPCRAFT_PART_INSTALL/bin/PhysX
+    build-snaps:
+      - 
     build-packages:
       - git
       - sed
