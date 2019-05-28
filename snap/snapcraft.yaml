@@ -1,9 +1,10 @@
 name: physx
 version: 4.0.0
 summary: The NVIDIA PhysX 4 SDK
-description: 
+description:|  a scalable multi-platform physics solution supporting a wide range of devices, 
+               from smartphones to high-end multicore CPUs and GPUs.
   
-adopt-info: devmode # use 'strict' once you have the right plugs and slots
+adopt-info: name: physx
 
 grade: stable
 confinement: devmode
@@ -21,6 +22,7 @@ apps:
       - network
       - removable-media
       - opengl
+      - unity7
 
 parts:
   physx:
@@ -28,85 +30,52 @@ parts:
     source: https://github.com/NVIDIAGameWorks/PhysX.git
     source-type: git
     override-pull: |
-      git clone https://github.com/NVIDIAGameWorks/PhysX.git src/github.com/NVIDIAGameWorks/PhysX
-       cd src/github.com/NVIDIAGameWorks/PhysX
-      last_committed_tag="$(git describe --tags --abbrev=0)"
-      last_committed_tag_ver="$(echo ${last_committed_tag} | sed 's/v//')"
-      last_released_tag="$(snap info $SNAPCRAFT_PROJECT_NAME | awk '$1 == "beta:" { print $2 }')"
-      # If the latest tag from the upstream project has not been released to
-      # beta, build that tag instead of master.
-      if [ "${last_committed_tag_ver}" != "${last_released_tag}" ]; then
-        git fetch
-        git checkout "${last_committed_tag}"
-      fi
-      snapcraftctl set-version "$(git describe --tags | sed 's/v//')"
-      override-build: |
-      export GOPATH=$PWD
-      cd src/github.com/NVIDIAGameWorks/PhysX
-      env CGO_ENABLED=0 GOOS=linux \
-      go build --ldflags "-s -w \
-        -X 'github.com/NVIDIAGameWorks/PhysX/version.GitCommit=$(git rev-list -1 HEAD)' \
-        -X 'github.com/NVIDIAGameWorks/PhysX/version.Version=$(git describe --tags --abbrev=0)'" \
-        -a -installsuffix cgo -o $SNAPCRAFT_PART_INSTALL/bin/PhysX
-    build-snaps:
-      - 
+      
     build-packages:
       - git
       - sed
       - g++
       - make
-      - libsdl1.2-dev
-      - libpng-dev
-      - libsdl-net1.2-dev
-      - libsdl-sound1.2-dev
-      - libasound2-dev
     stage-packages:
-      - libsdl-sound1.2
-      - libsdl-net1.2
-      - libxcursor1
       - libxi6
-      - libxinerama1
       - libxrandr2
       - libxrender1
-      - libopenal1
-      - libsndio6.1
-      - libspeex1
-      - libvorbisfile3
-      - libwayland-client0
-      - libwayland-cursor0
       - libwayland-egl1-mesa
-      - libxkbcommon0
-      - libglu1-mesa
-      - libasound2
-      - libasyncns0
-      - libbsd0
-      - libcaca0
-      - libdbus-1-3
-      - libflac8
-      - libgcc1
-      - libgcrypt20
-      - libgl1
-      - libglvnd0
-      - libglx0
-      - libgpg-error0
-      - liblz4-1
-      - liblzma5
-      - libncursesw5
-      - libogg0
-      - libpng16-16
-      - libpulse0
-      - libsdl1.2debian
-      - libslang2
-      - libsndfile1
-      - libstdc++6
-      - libsystemd0
-      - libtinfo5
-      - libvorbis0a
-      - libvorbisenc2
-      - libwrap0
-      - libx11-6
-      - libxau6
-      - libxcb1
-      - libxdmcp6
-      - libxext6
-      - zlib1g
+      - libnvidia-cfg1-390
+      - libnvidia-cfg1-418
+      - libnvidia-common-390
+      - libnvidia-common-418
+      - libnvidia-compute-390
+      - libnvidia-compute-418
+      - libnvidia-decode-390
+      - libnvidia-decode-418
+      - libnvidia-encode-390
+      - libnvidia-encode-418
+      - libnvidia-fbc1-390
+      - libnvidia-fbc1-418
+      - libnvidia-gl-390
+      - libnvidia-gl-418
+      - libnvidia-ifr1-390
+      - libnvidia-ifr1-418
+      - libvdpau1
+      - libxnvctrl0
+      - mesa-vdpau-drivers
+      - nvidia-compute-utils-390
+      - nvidia-compute-utils-418
+      - nvidia-dkms-390
+      - nvidia-dkms-418
+      - nvidia-driver-390
+      - nvidia-driver-410
+      - nvidia-driver-418
+      - nvidia-kernel-common-390
+      - nvidia-kernel-common-418
+      - nvidia-kernel-source-390
+      - nvidia-kernel-source-418
+      - nvidia-prime
+      - nvidia-settings
+      - nvidia-utils-390
+      - nvidia-utils-418
+      - vdpau-driver-all
+      - xserver-xorg-video-nvidia-390
+      - xserver-xorg-video-nvidia-418
+
