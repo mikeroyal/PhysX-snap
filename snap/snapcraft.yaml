@@ -4,8 +4,6 @@ summary: The NVIDIA PhysX 4 SDK
 description:|  a scalable multi-platform physics solution supporting a wide range of devices, 
                from smartphones to high-end multicore CPUs and GPUs.
   
-adopt-info: name: physx
-
 grade: stable
 confinement: devmode
 
@@ -26,7 +24,7 @@ apps:
 
 parts:
   physx:
-    plugin: 
+    plugin: cmake
     source: https://github.com/NVIDIAGameWorks/PhysX.git
     source-type: git
     override-pull: |
@@ -40,7 +38,15 @@ parts:
       - libxi6
       - libxrandr2
       - libxrender1
-      - libwayland-egl1-mesa
+      - libwayland-egl1-mesa       	
+      - libxxf86vm-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libglut
+      - gcc-multilib
+      - g++-multilib
+      - ia32-libs
+      - freeglut3-dev
       - libnvidia-cfg1-390
       - libnvidia-cfg1-418
       - libnvidia-common-390
@@ -78,4 +84,3 @@ parts:
       - vdpau-driver-all
       - xserver-xorg-video-nvidia-390
       - xserver-xorg-video-nvidia-418
-
