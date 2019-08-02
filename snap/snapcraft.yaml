@@ -1,5 +1,5 @@
 name: physx
-version: 4.0.0
+version: '4.0.0'
 summary: The NVIDIA PhysX 4 SDK
 description:|  a scalable multi-platform physics solution supporting a wide range of devices, 
                from smartphones to high-end multicore CPUs and GPUs.
@@ -9,9 +9,7 @@ confinement: devmode
 
 architectures:
   - build-on: amd64
-  - build-on: armhf
-  - build-on: arm64
-
+  
 apps:
   physx:
     command: bin/physx
