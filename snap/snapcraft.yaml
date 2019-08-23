@@ -6,6 +6,7 @@ description:|  a scalable multi-platform physics solution supporting a wide rang
   
 grade: stable
 confinement: devmode
+base: core18
 
 architectures:
   - build-on: amd64
@@ -18,7 +19,7 @@ apps:
       - network
       - removable-media
       - opengl
-      - unity7
+      
 
 parts:
   physx:
@@ -82,3 +83,8 @@ parts:
       - vdpau-driver-all
       - xserver-xorg-video-nvidia-390
       - xserver-xorg-video-nvidia-418
+apps:
+  physx:
+    command: physx
+    environment:
+      "DISABLE_WAYLAND": "1"
